@@ -3,6 +3,7 @@ import run from 'aocrunner';
 const parseInput = (rawInput: string) =>
   rawInput.split(' ').map((x) => parseInt(x));
 
+// @ts-expect-error
 function memoize(func) {
   var memo = {};
   var slice = Array.prototype.slice;
@@ -10,10 +11,13 @@ function memoize(func) {
   return function () {
     var args = slice.call(arguments);
 
+    // @ts-expect-error
     if (args in memo) {
+      // @ts-expect-error
       return memo[args];
     }
 
+    // @ts-expect-error
     return (memo[args] = func.apply(this, args));
   };
 }
